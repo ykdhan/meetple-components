@@ -10,9 +10,9 @@ const props = defineProps({
 
 <template>
   <Modal>
-    <span class="title">{{props.data?.name}}님께 매칭을 요청할까요?</span>
-    <p class="description">매칭이 성사되는 경우 100포인트가 사용됩니다.</p>
-    <SubmitButton :style="{backgroundColor: '#6751FF'}" @click="props.data?.onClickSubmit">매칭 요청하기</SubmitButton>
+    <span class="title">정말 탈퇴하시겠습니까?</span>
+    <p class="description">삭제된 정보는 다시 복구할 수 없습니다.</p>
+    <SubmitButton :style="{backgroundColor: '#FF334B'}" @click="props.data?.onClickSubmit">회원탈퇴</SubmitButton>
     <CancelButton :style="{marginTop: '20px'}" @click="props.data?.onClickCancel">취소하기</CancelButton>
   </Modal>
 </template>
@@ -28,6 +28,6 @@ const props = defineProps({
   margin-bottom: 32px;
   font-size: 14px;
   font-weight: 500;
-  color: #6726FE;
+  color: #929292;
 }
 </style>

@@ -14,7 +14,9 @@ const description = props.status === 'matched' ? '내가 수락하면 매칭이 
 
 <template>
   <div class="matching-status" :class="props.status">
-    <IcHeart :color="color" />
+    <div class="icon">
+      <IcHeart :style="{width: '32px', height: '32px'}" :color="color" />
+    </div>
     <div class="text">
       <span class="title">{{title}}</span>
       <p class="description">{{description}}</p>
@@ -37,6 +39,15 @@ const description = props.status === 'matched' ? '내가 수락하면 매칭이 
 }
 .matching-status.matched {
   background-color: #F742AF;
+}
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #fff;
 }
 .text {
   flex: 1;

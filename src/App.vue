@@ -7,10 +7,21 @@ const profileImageUrl = 'https://futureoflife.org/wp-content/uploads/2020/08/elo
 
 const activeModal = "request-match"
 
+const moreButtonData = [
+  {
+    title: '삭제하기',
+    onClick: () => {}
+  },
+  {
+    title: '차단하기',
+    warning: true,
+    onClick: () => {}
+  }
+]
 </script>
 
 <template>
-  <Header :image-url="profileImageUrl" />
+  <Header :image-url="profileImageUrl" :show-profile-button="true" :show-more-button="true" :more-button-data="moreButtonData" />
   <RouterView />
   <ModalArea :activeModal="activeModal" />
 </template>

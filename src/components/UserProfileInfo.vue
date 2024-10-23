@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import ShadowBox from '@/components/ShadowBox.vue'
-import GenderAgeTag from '@/components/GenderAgeTag.vue'
 
 const props = defineProps({
   name: String,
   message: String,
-  gender: String,
   age: Number,
   job: String,
   mbti: String,
@@ -22,12 +20,6 @@ const props = defineProps({
     <p class="message">{{props.message}}</p>
     <ul class="info">
       <li class="info-item">
-        <span class="title">성별 및 나이</span>
-        <p class="value">
-          <GenderAgeTag :gender="props.gender" :age="props.age" />
-        </p>
-      </li>
-      <li class="info-item">
         <span class="title">직장 및 직무</span>
         <p class="value">{{props.job}}</p>
       </li>
@@ -43,6 +35,10 @@ const props = defineProps({
         <span class="title">학교</span>
         <p class="value">{{props.school}}</p>
       </li>
+      <li class="info-item">
+        <span class="title">나이</span>
+        <p class="value">{{props.age}}세</p>
+      </li>
     </ul>
   </ShadowBox>
 </template>
@@ -53,6 +49,7 @@ const props = defineProps({
   height: 116px;
   border-radius: 58px;
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, .15);
+  object-fit: cover;
 }
 .name {
   margin-top: 16px;

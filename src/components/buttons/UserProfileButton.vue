@@ -23,5 +23,6 @@ const props = defineProps({
   width: 28px;
   height: 28px;
   border-radius: 14px;
+  object-fit: cover;
 }
 </style>
