@@ -13,6 +13,10 @@ const props = defineProps({
   onChange: {
     type: Function as PropType<(value: string) => void>,
     required: true,
+  },
+  validate: {
+    type: Function as PropType<(value: string) => string | null>,
+    default: () => null,
   }
 })
 
@@ -47,6 +51,8 @@ const onBlur = () => {
     <input
       ref="input"
       class="text-input"
+      :class="{error: props.validate(props.value)}"
+      :placeholder="props.placeholder"
       :value="props.value"
       @input="(e) => props.onChange(e.target.value)"
       @focus="onFocus"
@@ -56,6 +62,7 @@ const onBlur = () => {
       <IcClear />
     </button>
   </div>
+  <p class="error-message" v-if="props.validate(props.value)">{{props.validate(props.value)}}</p>
 </template>
 
 <style scoped>
@@ -82,7 +89,7 @@ label > span.required {
 }
 .text-input {
   width: -webkit-fill-available;
-  padding: 16px;
+  padding: 16px 40px 16px 16px;
   font-size: 16px;
   font-weight: 500;
   border: 1px solid #EAEAEA;
@@ -91,11 +98,24 @@ label > span.required {
 .text-input:focus {
   border-color: #6726FE;
 }
+.text-input.error {
+  border-color: #EA174A;
+}
+.text-input::placeholder {
+  color: #C2C2C2;
+}
 .clear {
   position: absolute;
   top: 50%;
   right: 16px;
   display: inline-flex;
   transform: translateY(-50%);
+}
+.error-message {
+  font-size: 12px;
+  font-weight: 500;
+  color: #EA174A;
+  text-align: right;
+  margin-top: 5px;
 }
 </style>

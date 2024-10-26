@@ -2,11 +2,13 @@
 import MoreButton from '@/components/buttons/MoreButton.vue'
 import BackButton from '@/components/buttons/BackButton.vue'
 import ActionButton from '@/components/buttons/ActionButton.vue'
+import CloseButton from '@/components/buttons/CloseButton.vue'
 import type { PropType } from 'vue'
 
 const props = defineProps({
   title: String,
   onClickBack: Function,
+  onClickClose: Function,
   moreButtonData: Object,
   actionButtonData: Object as PropType<{title: string, onClick: () => void}>
 })
@@ -15,7 +17,7 @@ const props = defineProps({
 <template>
   <header class="header">
     <div class="left">
-      <BackButton @click="onClickBack" />
+      <BackButton @click="props.onClickBack" v-if="!!props.onClickBack" />
     </div>
     <h1>{{props.title}}</h1>
     <div class="right">
@@ -23,6 +25,7 @@ const props = defineProps({
       <ActionButton :title="props.actionButtonData?.title"
                     @click="props.actionButtonData?.onClick"
                     v-if="!!props.actionButtonData" />
+      <CloseButton @click="props.onClickClose" v-if="!!props.onClickClose" />
     </div>
   </header>
 </template>
@@ -33,6 +36,7 @@ const props = defineProps({
   display: flex;
   align-items: center;
   padding: 5px 16px;
+  min-height: 38px;
 }
 .left {
   display: flex;

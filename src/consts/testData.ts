@@ -52,6 +52,11 @@ export const TEST_SELECT_OPTIONS = [
   { value: 'ESTP', label: 'ESTP' },
 ]
 
+export const TEST_RADIO_OPTIONS = [
+  { value: 'male', label: '남자', color: '#6726FE' },
+  { value: 'female', label: '여자', color: "#F742AF" },
+]
+
 export const TEST_NOTIFICATIONS = [
   {
     id: 1,

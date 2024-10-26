@@ -1,8 +1,11 @@
 <script setup lang="ts">
+const props = defineProps({
+  disabled: Boolean,
+})
 </script>
 
 <template>
-  <button class="submit-button">
+  <button class="submit-button" :disabled="props.disabled">
     <slot />
   </button>
 </template>
@@ -20,5 +23,8 @@
   background-color: #000;
   border: none;
   color: #fff;
+}
+.submit-button:disabled {
+  background-color: #C8C8C8 !important;
 }
 </style>

@@ -5,6 +5,8 @@ import ProfileEditView from '@/views/ProfileEditView.vue'
 import FormView from '@/views/FormView.vue'
 import PointView from '@/views/PointView.vue'
 import NotificationView from '@/views/NotificationView.vue'
+import AgreementView from '@/views/AgreementView.vue'
+import SignUpView from '@/views/SignUpView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +40,16 @@ const router = createRouter({
       path: '/notification',
       name: 'notification',
       component: NotificationView
+    },
+    {
+      path: '/agreement',
+      name: 'agreement',
+      component: AgreementView
+    },
+    {
+      path: '/sign-up',
+      name: 'sign-up',
+      component: SignUpView
     }
   ]
 })

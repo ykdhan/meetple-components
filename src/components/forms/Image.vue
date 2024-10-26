@@ -9,7 +9,8 @@ const props = defineProps({
   onChange: {
     type: Function,
     required: true,
-  }
+  },
+  description: String,
 })
 
 const input = ref<HTMLInputElement>()
@@ -45,8 +46,17 @@ const onImageChange = (e: Event) => {
       type="file"
       @change="onImageChange"
     />
-    <img ref="image" class="thumbnail" :class="{ active: selected }" src="" alt="Thumbnail" />
-    <Button class="button" :onClick="() => input?.click()">
+    <img ref="image" class="thumbnail" src="" alt="Thumbnail" />
+    <div class="empty" v-if="!selected">
+      <button class="new-button" @click="() => input?.click()">
+        <div class="icon">
+          <IcImage width="43" height="43" />
+        </div>
+        <span>이미지 등록하기</span>
+      </button>
+      <p class="description" v-if="props.description">{{props.description}}</p>
+    </div>
+    <Button class="change-button" :onClick="() => input?.click()" v-if="selected">
       <IcImage width="24" height="24" />
       <span>이미지 교체하기</span>
     </Button>
@@ -54,6 +64,9 @@ const onImageChange = (e: Event) => {
 </template>
 
 <style scoped>
+.container {
+  position: relative;
+}
 label {
   display: flex;
   flex-direction: row;
@@ -73,17 +86,11 @@ label > span.required {
   color: #FF334B;
 }
 .thumbnail {
-  display: none;
+  display: block;
   width: 100%;
   height: 330px;
   border-radius: 16px;
   object-fit: cover;
-}
-.thumbnail.active {
-  display: block;
-}
-.container {
-  position: relative;
 }
 .input {
   position: absolute;
@@ -93,7 +100,7 @@ label > span.required {
   height: 0;
   opacity: 0;
 }
-.button {
+.change-button {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -103,9 +110,48 @@ label > span.required {
   margin: 15px auto 0;
   border-radius: 22px;
 }
-.button span {
+.change-button span {
   font-size: 14px;
   font-weight: 600;
   color: #000;
+}
+.empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 330px;
+  background-color: #F7F7F7;
+  border-radius: 16px;
+}
+.empty .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 37px;
+  background-color: #fff;
+}
+.new-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+.new-button span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+.description {
+  font-size: 13px;
+  font-weight: 500;
+  color: #A1A1A1;
+  margin-top: 3px;
 }
 </style>

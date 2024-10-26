@@ -2,7 +2,10 @@
 import type { PropType } from 'vue'
 
 const props = defineProps({
-  position:  String as PropType<'top' | 'bottom'>,
+  position: {
+    type: String as PropType<'top' | 'bottom'>,
+    required: true,
+  },
 })
 </script>
 
