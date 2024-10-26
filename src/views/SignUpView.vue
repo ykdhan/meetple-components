@@ -6,7 +6,6 @@ import CodeInput from '@/components/forms/CodeInput.vue'
 import PageTitleAndDescription from '@/components/PageTitleAndDescription.vue'
 import Gap from '@/components/Gap.vue'
 import { ref } from 'vue'
-import { validatePhoneNumber } from '@/lib/utils'
 
 const phoneNumber = ref('')
 const code = ref('')
@@ -20,14 +19,10 @@ const code = ref('')
     <PageTitleAndDescription title="휴대폰 번호를 입력하세요" description="필수입니다" />
     <Gap :height="40" />
     <PhoneNumberInput
-      :validate="(val: string) => {
-        if (val.length < 13) return null;
-        return validatePhoneNumber(val) ? null : '올바른 휴대폰 번호를 입력해주세요';
-      }"
       :on-change="(val: string) => phoneNumber = val"
       :value="phoneNumber"
     />
-    <Gap :height="40" />
+    <Gap :height="20" />
     <CodeInput
       :on-change="(val: string) => code = val"
       :value="code"

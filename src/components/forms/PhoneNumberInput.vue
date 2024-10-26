@@ -2,6 +2,7 @@
 import { type PropType } from 'vue'
 
 const props = defineProps({
+  error: Boolean,
   value: {
     type: String,
     required: true,
@@ -9,10 +10,6 @@ const props = defineProps({
   onChange: {
     type: Function as PropType<(value: string) => void>,
     required: true,
-  },
-  validate: {
-    type: Function as PropType<(value: string) => string | null>,
-    default: () => null,
   },
 })
 
@@ -40,7 +37,7 @@ const formatPhoneNumber = (value: string): string => {
       props.onChange(formattedVal);
     }"
   />
-  <p class="error-message" v-if="props.validate(props.value)">{{props.validate(props.value)}}</p>
+  <p class="error-message" v-if="props.error">휴대폰 번호가 올바르지 않습니다. 다시 확인해주세요.</p>
 </template>
 
 <style scoped>
