@@ -3,7 +3,7 @@
 
 <template>
   <div class="modal">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

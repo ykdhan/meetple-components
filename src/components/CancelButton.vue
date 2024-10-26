@@ -3,7 +3,7 @@
 
 <template>
   <button class="cancel-button">
-    <slot></slot>
+    <slot />
   </button>
 </template>
 

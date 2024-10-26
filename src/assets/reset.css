@@ -56,3 +56,13 @@ a, button {
     margin: 0;
     cursor: pointer;
 }
+button, input, textarea, select {
+    outline: none;
+}
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+select::-ms-expand {
+    display: none;
+}

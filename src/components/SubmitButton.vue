@@ -3,7 +3,7 @@
 
 <template>
   <button class="submit-button">
-    <slot></slot>
+    <slot />
   </button>
 </template>
 

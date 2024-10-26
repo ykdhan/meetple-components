@@ -1,22 +1,19 @@
 <script setup lang="ts">
-import SubmitButton from '@/components/SubmitButton.vue'
+import { formatNumber } from '@/lib/utils'
 
 const props = defineProps({
-  point: Number,
-  onClickCharge: Function,
+  point: {
+    type: Number,
+    required: true,
+  },
 })
 </script>
 
 <template>
   <div class="my-point">
-    <div class="container">
-      <span class="title">나의 포인트</span>
-      <span class="point">
-        <img src="@/assets/images/candy.png" alt="Point" />
-        {{props.point}}
-      </span>
-    </div>
-    <SubmitButton class="btn-charge">충전하기</SubmitButton>
+    <span class="title">나의 포인트</span>
+    <div class="line" />
+    <span class="point">{{formatNumber(props.point)}}</span>
   </div>
 </template>
 
@@ -25,41 +22,23 @@ const props = defineProps({
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 16px;
-  background-color: #F4F4F4;
+  gap: 10px;
+  padding: 18px;
+  background-color: #F7F7F7;
   border-radius: 16px;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 6px;
-}
 .title {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #898989;
 }
+.line {
+  flex: 1;
+  border-bottom: 1px dashed #C3C3C3;
+}
 .point {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2px;
-  font-size: 26px;
+  font-size: 19px;
   font-weight: 700;
   color: #000;
-}
-.point img {
-  width: 27px;
-  height: 27px;
-  object-fit: contain;
-}
-.btn-charge {
-  width: auto;
-  height: 36px;
-  padding: 0 16px;
-  background-color: #7542FD;
-  font-size: 14px;
-  font-weight: 700;
 }
 </style>

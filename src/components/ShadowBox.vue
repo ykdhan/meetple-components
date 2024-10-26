@@ -3,7 +3,7 @@
 
 <template>
   <div class="shadow-box">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

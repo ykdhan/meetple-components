@@ -7,23 +7,27 @@ const props = defineProps({
 
 <template>
   <nav>
-    <template v-if="props.tabs && props.tabs.length">
-      <router-link
-        v-for="(tab, index) in props.tabs"
-        :key="index"
-        :to="tab.to"
-        :class="{ 'tab': true, 'active': props.currentIndex === index }"
-      >
-        {{ tab.title }}
-      </router-link>
-    </template>
+    <div class="container">
+      <template v-if="props.tabs && props.tabs.length">
+        <router-link
+          v-for="(tab, index) in props.tabs"
+          :key="index"
+          :to="tab.to"
+          :class="{ 'tab': true, 'active': props.currentIndex === index }"
+        >
+          {{ tab.title }}
+        </router-link>
+      </template>
+    </div>
   </nav>
 </template>
 
 <style scoped>
 nav {
+  padding: 6px 16px;
+}
+.container {
   display: flex;
-  width: 100%;
   padding: 2px;
   background-color: #F3F3F3;
   border-radius: 20px;

@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import IcMore from '@/components/icons/IcMore.vue'
 
 const props = defineProps({
-  options: Array
+  options: Array<{ title: string, warning?: boolean, onClick: () => void }>
 })
 
 const open = ref(false)
@@ -48,6 +48,8 @@ onUnmounted(() => {
 <style scoped>
 .container {
   position: relative;
+  width: 28px;
+  height: 28px;
 }
 .btn-more {
   width: 28px;

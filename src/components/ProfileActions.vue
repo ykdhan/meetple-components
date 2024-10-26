@@ -9,7 +9,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="floating-action-buttons">
+  <div class="profile-actions">
     <button @click="props.onClickClose">
       <IcClose />
     </button>
@@ -21,11 +21,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
-.floating-action-buttons {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
+.profile-actions {
   display: flex;
   flex-direction: row;
   align-items: center;

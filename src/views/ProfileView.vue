@@ -1,35 +1,52 @@
 <script setup lang="ts">
 import Tabs from '@/components/Tabs.vue'
 import MyProfile from '@/components/MyProfile.vue'
-import MyPoint from '@/components/MyPoint.vue'
+import MyPointWithButton from '@/components/MyPointWithButton.vue'
+import Settings from '@/components/Settings.vue'
+import AlertBanner from '@/components/AlertBanner.vue'
+import AccountSettings from '@/components/AccountSettings.vue'
+import Divider from '@/components/Divider.vue'
+import ButtonWithDetail from '@/components/buttons/ButtonWithDetail.vue'
+import Gap from '@/components/Gap.vue'
+import StickyArea from '@/components/StickyArea.vue'
+import SubHeader from '@/components/SubHeader.vue'
+import { TEST_MORE_DATA, TEST_TABS, TEST_USER } from '@/consts/testData'
 
-const tabs = [
-  { title: '추천', to: '#' },
-  { title: '매칭', content: '#' },
+const settings = [
+  { title: '문의하기', onClick: () => {} },
+  { title: '공지사항', onClick: () => {} },
+  { title: '계정설정', onClick: () => {} },
 ]
 
-const user = {
-  name: '일론',
-  message: '쏘맥 고?',
-  age: 26,
-  job: '테슬라 CEO',
-  mbti: 'ENTJ',
-  location: '서울특별시',
-  school: '한양대학교',
-  profile_image_url: 'https://futureoflife.org/wp-content/uploads/2020/08/elon_musk_royal_society.jpg'
-}
+const user = TEST_USER;
 </script>
 
 <template>
+  <StickyArea position="top" :style="{ backgroundColor: '#fff'}">
+    <SubHeader title="테스트" :more-button-data="TEST_MORE_DATA" />
+    <Tabs :tabs="TEST_TABS" :current-index="1" />
+  </StickyArea>
   <div class="page">
-    <Tabs :tabs="tabs" :current-index="1" />
     <MyProfile :name="user.name" :message="user.message" :image-url="user.profile_image_url" />
-    <MyPoint :point="1525" :on-click-charge="() => {}" />
+    <Gap :height="20" />
+    <AlertBanner title="카카오톡 오픈 프로필을 등록해주세요." description="링크된 상대방과 대화할 수 있습니다." />
+    <Gap :height="20" />
+    <MyPointWithButton :point="1525" :on-click-charge="() => {}" />
+    <Gap :height="20" />
+    <Settings :options="settings" />
+    <Gap :height="20" />
+    <AccountSettings name="일론" phone-number="010-1234-1234" birth-date="2000.01.15" :on-click-logout="() => {}" />
+    <Gap :height="20" />
+    <Divider />
+    <Gap :height="20" />
+    <ButtonWithDetail title="다운로드" description="지금 바로 다운로드" />
+    <Gap :height="20" />
+    <ButtonWithDetail title="회원탈퇴" title-color="#FF334B" description="지금 바로 고고" />
   </div>
 </template>
 
 <style>
 .page {
-  padding: 56px 16px;
+  padding: 16px;
 }
 </style>

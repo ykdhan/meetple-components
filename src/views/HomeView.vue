@@ -4,13 +4,12 @@ import UserProfileInfo from '@/components/UserProfileInfo.vue'
 import Questions from '@/components/Questions.vue'
 import Empty from '@/components/Empty.vue'
 import MatchingStatus from '@/components/MatchingStatus.vue'
-import FloatingActionButtons from '@/components/FloatingActionButtons.vue'
+import ProfileActions from '@/components/ProfileActions.vue'
 import PartnerProfileInfo from '@/components/PartnerProfileInfo.vue'
-
-const tabs = [
-  { title: '추천', to: '#' },
-  { title: '매칭', content: '#' },
-]
+import Gap from '@/components/Gap.vue'
+import StickyArea from '@/components/StickyArea.vue'
+import MainHeader from '@/components/MainHeader.vue'
+import { TEST_PROFILE_URL, TEST_TABS } from '@/consts/testData'
 
 const user = {
   name: '일론',
@@ -21,17 +20,6 @@ const user = {
   location: '서울특별시',
   school: '한양대학교',
   profile_image_url: 'https://futureoflife.org/wp-content/uploads/2020/08/elon_musk_royal_society.jpg'
-}
-
-const partner = {
-  name: '트럼프',
-  message: '대통령 가즈아',
-  age: 32,
-  job: '미국 전 대통령',
-  mbti: 'ISTJ',
-  location: '서울특별시',
-  school: '서울대학교',
-  profile_image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg'
 }
 
 const questions = [
@@ -51,10 +39,15 @@ const questions = [
 </script>
 
 <template>
+  <StickyArea position="top" :style="{ backgroundColor: '#fff'}">
+    <MainHeader :image-url="TEST_PROFILE_URL" />
+    <Tabs :tabs="TEST_TABS" :current-index="1" />
+  </StickyArea>
   <div class="page">
-    <Tabs :tabs="tabs" :current-index="0" />
     <MatchingStatus status="waiting" />
+    <Gap :height="20" />
     <MatchingStatus status="matched" />
+    <Gap :height="20" />
     <UserProfileInfo
       :name="user.name"
       :message="user.message"
@@ -65,8 +58,11 @@ const questions = [
       :school="user.school"
       :image-url="user.profile_image_url"
     />
+    <Gap :height="20" />
     <Questions :data="questions"/>
+    <Gap :height="20" />
     <Empty title="추천 매칭 준비중" description="추천될 매칭이 준비중에 있어요! 매칭이 도착하면 알려드릴께요." />
+    <Gap :height="20" />
     <PartnerProfileInfo :name="user.name"
                         :message="user.message"
                         :age="user.age"
@@ -75,12 +71,14 @@ const questions = [
                         :location="user.location"
                         :school="user.school"
                         :image-url="user.profile_image_url" />
-    <FloatingActionButtons :onClickClose="() => {}" :onClickHeart="() => {}" />
   </div>
+  <StickyArea position="bottom" :style="{ display: 'flex', justifyContent: 'center', paddingBottom: '16px' }">
+    <ProfileActions :onClickClose="() => {}" :onClickHeart="() => {}" />
+  </StickyArea>
 </template>
 
 <style>
 .page {
-  padding: 56px 16px;
+  padding: 16px;
 }
 </style>
