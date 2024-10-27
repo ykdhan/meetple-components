@@ -16,14 +16,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  onChange: {
-    type: Function as PropType<(value: string) => void>,
-    required: true,
-  },
   maxLength: Number,
 })
 
 const { setModal } = useModalStore()
+
+const emit = defineEmits(['change'])
 
 const onClick = () => {
   setModal({
@@ -33,7 +31,7 @@ const onClick = () => {
       modalOptionCols: props.modalOptionCols,
       options: props.options,
       selected: props.value,
-      onChange: props.onChange,
+      onChange: (val) => emit('change', val),
     }
   })
 }

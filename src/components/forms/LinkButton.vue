@@ -68,7 +68,4 @@ label > span.required {
   display: inline-flex;
   transform: translateY(-50%);
 }
-.arrow svg {
-  transform: rotate(90deg);
-}
 </style>

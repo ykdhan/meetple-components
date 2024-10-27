@@ -44,9 +44,9 @@ const birthdate = ref('')
     <Gap :height="20" />
     <LinkButton title="프로필 연동하기" label="프로필 연동" :required="true" @click="() => {}" />
     <Gap :height="20" />
-    <RadioButtonTabs label="성별" name="gender" :required="true" :on-change="(val: string) => gender = val" :value="gender" :options="TEST_RADIO_OPTIONS" />
+    <RadioButtonTabs label="성별" name="gender" :required="true" @change="(val: string) => gender = val" :value="gender" :options="TEST_RADIO_OPTIONS" />
     <Gap :height="20" />
-    <Select label="MBTI" :required="true" :on-change="(val: string) => mbti = val" :value="mbti" :options="TEST_SELECT_OPTIONS" :modal-option-cols="4" />
+    <Select label="MBTI" :required="true" @change="(val: string) => mbti = val" :value="mbti" :options="TEST_SELECT_OPTIONS" :modal-option-cols="4" />
     <Gap :height="20" />
     <AlertBanner title="카카오톡 오픈 프로필을 등록해주세요." description="링크된 상대방과 대화할 수 있습니다." />
     <Gap :height="20" />

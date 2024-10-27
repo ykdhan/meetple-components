@@ -16,11 +16,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  onChange: {
-    type: Function as PropType<(value: string) => void>,
-    required: true,
-  },
 })
+
+const emit = defineEmits(['change'])
 </script>
 
 <template>
@@ -35,7 +33,7 @@ const props = defineProps({
              :value="option.value"
              :name="props.name"
              :checked="option.value === props.value"
-             @change="() => props.onChange(option.value)"
+             @change="() => emit('change', option.value)"
       />
       <label :for="option.value"
              :style="{color: option.color || '#000'}">{{option.label}}</label>
