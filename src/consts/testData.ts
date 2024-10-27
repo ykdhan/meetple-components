@@ -52,6 +52,36 @@ export const TEST_SELECT_OPTIONS = [
   { value: 'ESTP', label: 'ESTP' },
 ]
 
+export const TEST_DEEP_SELECT_OPTIONS = [
+  { value: '서울', label: '서울',
+    children: [
+      { value: '강남구', label: '강남구' },
+      { value: '강북구', label: '강북구' },
+      { value: '강서구', label: '강서구' },
+      { value: '강동구', label: '강동구' },
+      { value: '마포구', label: '마포구' },
+    ]
+  },
+  { value: '경기', label: '경기',
+    children: [
+      { value: '수원', label: '수원' },
+      { value: '성남', label: '성남' },
+      { value: '안양', label: '안양' },
+      { value: '부천', label: '부천' },
+      { value: '안산', label: '안산' },
+    ]
+  },
+  { value: '인천', label: '인천',
+    children: [
+      { value: '중구', label: '중구' },
+      { value: '남구', label: '남구' },
+      { value: '동구', label: '동구' },
+      { value: '북구', label: '북구' },
+      { value: '연수구', label: '연수구' },
+    ]
+  },
+]
+
 export const TEST_RADIO_OPTIONS = [
   { value: 'male', label: '남자', color: '#6726FE' },
   { value: 'female', label: '여자', color: "#F742AF" },

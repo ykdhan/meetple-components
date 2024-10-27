@@ -10,3 +10,13 @@ export type NotificationType =
 
 export type ModalType = 'request-match' | 'reject-match' | 'matched' | 'block-partner' | 'delete-partner' |
   'logout' | 'delete-account' | 'purchase-point' | null;
+
+
+export type SelectOption = {
+  label: string;
+  value: string | number;
+}
+
+export type DeepSelectOption = SelectOption & {
+  children: SelectOption[];
+}

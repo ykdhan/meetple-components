@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { type PropType } from 'vue'
+import { computed, type PropType } from 'vue'
 import IcGrayArrow from '@/components/icons/IcGrayArrow.vue'
 import { useModalStore } from '@/stores/modal'
-import type { SelectOption } from '@/types'
+import type { DeepSelectOption } from '@/types'
 
 const props = defineProps({
   label: String,
   required: Boolean,
   modalTitle: String,
-  modalOptionCols: Number,
   options: {
-    type: Array as PropType<SelectOption[]>,
+    type: Array as PropType<DeepSelectOption[]>,
     required: true,
   },
   value: {
@@ -25,16 +24,20 @@ const emit = defineEmits(['change'])
 
 const onClick = () => {
   setModal({
-    type: 'select',
+    type: 'deep-select',
     data: {
       modalTitle: props.modalTitle,
-      modalOptionCols: props.modalOptionCols,
       options: props.options,
       selected: props.value,
-      onChange: (val) => emit('change', val),
+      onChange: (val1, val2) => emit('change', val1, val2),
     }
   })
 }
+
+const selected = computed(() => {
+  const options = props.options?.reduce((acc, option) => [...acc, ...option.children], [])
+  return options.find((option) => option.value === props.value)
+})
 </script>
 
 <template>
@@ -44,7 +47,7 @@ const onClick = () => {
   </label>
   <div class="container">
     <button class="select" @click="onClick">
-      <span>{{props.options.find(option => option.value === props.value)?.label}}</span>
+      <span>{{selected?.label}}</span>
       <div class="arrow">
         <IcGrayArrow />
       </div>
