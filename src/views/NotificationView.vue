@@ -8,7 +8,7 @@ import { TEST_ACTION_DATA, TEST_NOTIFICATIONS } from '@/consts/testData'
 
 <template>
   <StickyArea position="top" :style="{ backgroundColor: '#fff'}">
-    <SubHeader title="알림" :action-button-data="TEST_ACTION_DATA" :on-click-back="() => {}" />
+    <SubHeader title="알림" :action-button-data="TEST_ACTION_DATA" :show-back-button="true" @back="() => {}" />
   </StickyArea>
   <div class="page">
     <div v-for="notification in TEST_NOTIFICATIONS.reverse()" :key="notification.id">

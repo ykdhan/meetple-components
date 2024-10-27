@@ -6,9 +6,9 @@ import UserProfileButton from '@/components/buttons/UserProfileButton.vue'
 const props = defineProps({
   imageUrl: String,
   hasUnreadNotification: Boolean,
-  onClickNotification: Function,
-  onClickProfile: Function,
 })
+
+const emit = defineEmits(['notification', 'profile'])
 </script>
 
 <template>
@@ -16,8 +16,8 @@ const props = defineProps({
     <div class="logo-wrapper">
       <IcLogo />
     </div>
-    <NotificationButton :showIndicator="props.hasUnreadNotification" @click="props.onClickNotification" />
-    <UserProfileButton :imageUrl="props.imageUrl" @click="props.onClickProfile" />
+    <NotificationButton :showIndicator="props.hasUnreadNotification" @click="() => emit('notification')" />
+    <UserProfileButton :imageUrl="props.imageUrl" @click="() => emit('profile')" />
   </header>
 </template>
 

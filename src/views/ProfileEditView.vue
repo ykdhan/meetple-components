@@ -25,12 +25,12 @@ const birthdate = ref('')
 <template>
   <StickyArea position="top" :style="{ backgroundColor: '#fff'}">
     <ProgressBar :progress="0" :processing="true" />
-    <SubHeader title="프로필" :action-button-data="TEST_ACTION_DATA" :on-click-back="() => {}" />
+    <SubHeader title="프로필" :action-button-data="TEST_ACTION_DATA" :show-back-button="true" @back="() => {}" />
   </StickyArea>
   <div class="page">
-    <TextInput label="이름" placeholder="이름을 입력하세요" :required="true" :on-change="(val: string) => { name = val}" :value="name" />
+    <TextInput label="이름" placeholder="이름을 입력하세요" :required="true" @input="(val: string) => { name = val}" :value="name" />
     <Gap :height="20" />
-    <TextInput label="학교명" :on-change="(val: string) => { school = val}" :value="school" />
+    <TextInput label="학교명" @input="(val: string) => { school = val}" :value="school" :validate="(val: string) => val.length > 3 ? null : '학교 이름이 짧아요'" />
     <Gap :height="20" />
     <TextArea label="자개소개" :required="true" @input="(val: string) => introduction = val" :value="introduction" />
     <Gap :height="20" />
@@ -38,7 +38,7 @@ const birthdate = ref('')
       if (val.length < 10) return null;
       if (validateDate(val)) return null;
       return '생년월일이 올바르지 않습니다';
-    }" :on-change="(val: string) => birthdate = val" :value="birthdate" />
+    }" @input="(val: string) => birthdate = val" :value="birthdate" />
     <Gap :height="20" />
     <TextArea question="나와 내 친구들은 어떤 사람인가요?" @input="(val: string) => introduction = val" :value="introduction" :num-lines="6" :max-length="120" />
     <Gap :height="20" />

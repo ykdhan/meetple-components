@@ -7,17 +7,19 @@ import type { PropType } from 'vue'
 
 const props = defineProps({
   title: String,
-  onClickBack: Function,
-  onClickClose: Function,
+  showCloseButton: Boolean,
+  showBackButton: Boolean,
   moreButtonData: Object,
   actionButtonData: Object as PropType<{title: string, onClick: () => void}>
 })
+
+const emit = defineEmits(['back', 'close'])
 </script>
 
 <template>
   <header class="header">
     <div class="left">
-      <BackButton @click="props.onClickBack" v-if="!!props.onClickBack" />
+      <BackButton @click="() => emit('back')" v-if="props.showBackButton" />
     </div>
     <h1>{{props.title}}</h1>
     <div class="right">
@@ -25,7 +27,7 @@ const props = defineProps({
       <ActionButton :title="props.actionButtonData?.title"
                     @click="props.actionButtonData?.onClick"
                     v-if="!!props.actionButtonData" />
-      <CloseButton @click="props.onClickClose" v-if="!!props.onClickClose" />
+      <CloseButton @click="() => emit('close')" v-if="props.showCloseButton" />
     </div>
   </header>
 </template>

@@ -13,7 +13,7 @@ const agreement = ref([false, false, false])
 
 <template>
   <StickyArea position="top" :style="{ backgroundColor: '#fff'}">
-    <SubHeader :on-click-close="() => {}" />
+    <SubHeader :show-close-button="true" @close="() => {}" />
   </StickyArea>
   <div class="page">
     <PageTitleAndDescription title="동의해주세요" description="빨리요" />

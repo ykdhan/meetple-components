@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type PropType, ref } from 'vue'
+import { computed, ref } from 'vue'
 import IcClear from '@/components/icons/IcClear.vue'
 
 const props = defineProps({
@@ -10,24 +10,24 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  onChange: {
-    type: Function as PropType<(value: string) => void>,
-    required: true,
-  },
   validate: {
     type: Function as PropType<(value: string) => string | null>,
     default: () => null,
   }
 })
 
+const emit = defineEmits(['input', 'validate'])
+
 const input = ref<HTMLInputElement | null>(null);
 
 const focused = ref(false);
 
+const validate = computed(() => props.validate(props.value));
+
 const onClear = () => {
   if (input.value) {
     input.value.value = '';
-    props.onChange('');
+    emit('input', '');
   }
 }
 
@@ -51,10 +51,10 @@ const onBlur = () => {
     <input
       ref="input"
       class="text-input"
-      :class="{error: props.validate(props.value)}"
+      :class="{error: validate}"
       :placeholder="props.placeholder"
       :value="props.value"
-      @input="(e) => props.onChange(e.target.value)"
+      @input="(e) => emit('input', e.target.value)"
       @focus="onFocus"
       @blur="onBlur"
     />
@@ -62,7 +62,7 @@ const onBlur = () => {
       <IcClear />
     </button>
   </div>
-  <p class="error-message" v-if="props.validate(props.value)">{{props.validate(props.value)}}</p>
+  <p class="error-message" v-if="validate">{{validate}}</p>
 </template>
 
 <style scoped>

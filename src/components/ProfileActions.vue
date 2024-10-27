@@ -2,19 +2,16 @@
 import IcClose from '@/components/icons/IcGrayClose.vue'
 import IcHeart from '@/components/icons/IcHeart.vue'
 
-const props = defineProps({
-  onClickClose: Function,
-  onClickHeart: Function
-})
+const emit = defineEmits(['close', 'heart'])
 </script>
 
 <template>
   <div class="profile-actions">
-    <button @click="props.onClickClose">
+    <button @click="() => emit('close')">
       <IcClose />
     </button>
     <div class="division" />
-    <button @click="props.onClickHeart">
+    <button @click="() => emit('heart')">
       <IcHeart :style="{width: '50px', height: '50px'}" color="#7542FD"  />
     </button>
   </div>

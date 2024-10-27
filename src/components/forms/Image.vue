@@ -6,12 +6,10 @@ import Button from '@/components/Button.vue'
 const props = defineProps({
   label: String,
   required: Boolean,
-  onChange: {
-    type: Function,
-    required: true,
-  },
   description: String,
 })
+
+const emit = defineEmits(['change'])
 
 const input = ref<HTMLInputElement>()
 const image = ref<HTMLImageElement>()
@@ -27,7 +25,7 @@ const onImageChange = (e: Event) => {
         selected.value = true
         image.value.src = e.target?.result as string
       }
-      props.onChange(e.target?.result as string)
+      emit('change', e.target?.result as string)
     }
     reader.readAsDataURL(file)
   }

@@ -8,11 +8,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  onChange: {
-    type: Function as PropType<(value: string) => void>,
-    required: true,
-  },
 })
+
+const emit = defineEmits(['input'])
 
 const LENGTH = 6
 const PLACEHOLDER = '123456'
@@ -29,7 +27,7 @@ const refs = ref(Array.from({ length: LENGTH }, () => null))
         :value="props.value[i - 1]"
         @keyup.backspace="() => {
           if (props.value.length === 0 || i === 1) return
-          props.onChange(props.value.slice(0, props.value.length - 1))
+          emit('input', props.value.slice(0, props.value.length - 1))
           refs[i - 2].focus()
         }"
         @input="(e) => {
@@ -37,7 +35,7 @@ const refs = ref(Array.from({ length: LENGTH }, () => null))
           const val = target.value.replace(/[^\d]/g, '').slice(0, 1)
           target.value = val
           const nextValue = (props.value + val).slice(0, LENGTH)
-          props.onChange(nextValue)
+          emit('input', nextValue)
           if (nextValue.length === LENGTH) return
           refs[i].focus()
         }"

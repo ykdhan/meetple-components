@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { type PropType } from 'vue'
-
 const props = defineProps({
   error: Boolean,
   value: {
     type: String,
     required: true,
   },
-  onChange: {
-    type: Function as PropType<(value: string) => void>,
-    required: true,
-  },
 })
+
+const emit = defineEmits(['input'])
 
 const PLACEHOLDER = '010-1234-5678'
 
@@ -34,7 +30,7 @@ const formatPhoneNumber = (value: string): string => {
       const val = target.value;
       const formattedVal = formatPhoneNumber(val);
       target.value = formattedVal;
-      props.onChange(formattedVal);
+      emit('input', formattedVal);
     }"
   />
   <p class="error-message" v-if="props.error">휴대폰 번호가 올바르지 않습니다. 다시 확인해주세요.</p>

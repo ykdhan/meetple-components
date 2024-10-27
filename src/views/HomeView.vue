@@ -40,7 +40,7 @@ const questions = [
 
 <template>
   <StickyArea position="top" :style="{ backgroundColor: '#fff'}">
-    <MainHeader :image-url="TEST_PROFILE_URL" />
+    <MainHeader :image-url="TEST_PROFILE_URL" @notification="() => {}" @profile="() => {}" />
     <Tabs :tabs="TEST_TABS" :current-index="1" />
   </StickyArea>
   <div class="page">
@@ -73,7 +73,7 @@ const questions = [
                         :image-url="user.profile_image_url" />
   </div>
   <StickyArea position="bottom" :style="{ display: 'flex', justifyContent: 'center', paddingBottom: '16px' }">
-    <ProfileActions :onClickClose="() => {}" :onClickHeart="() => {}" />
+    <ProfileActions @close="() => {}" @heart="() => {}" />
   </StickyArea>
 </template>
 

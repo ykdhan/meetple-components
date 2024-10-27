@@ -19,12 +19,12 @@ const code = ref('')
     <PageTitleAndDescription title="휴대폰 번호를 입력하세요" description="필수입니다" />
     <Gap :height="40" />
     <PhoneNumberInput
-      :on-change="(val: string) => phoneNumber = val"
+      @input="(val: string) => phoneNumber = val"
       :value="phoneNumber"
     />
     <Gap :height="20" />
     <CodeInput
-      :on-change="(val: string) => code = val"
+      @input="(val: string) => code = val"
       :value="code"
     />
   </div>

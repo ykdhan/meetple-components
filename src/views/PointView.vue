@@ -8,12 +8,12 @@ import PointItems from '@/components/PointItems.vue'
 
 <template>
   <StickyArea position="top" :style="{ backgroundColor: '#fff'}">
-    <SubHeader title="포인트 충전" :on-click-back="() => {}" />
+    <SubHeader title="포인트 충전" :show-back-button="true" @back="() => {}" />
   </StickyArea>
   <div class="page">
     <MyPoint :point="631" />
     <Gap :height="20" />
-    <PointItems :on-click-item="() => {}" />
+    <PointItems @click="(id: number) => {}" />
   </div>
 </template>
 

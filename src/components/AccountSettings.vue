@@ -5,8 +5,9 @@ const props = defineProps({
   phoneNumber: String,
   name: String,
   birthDate: String,
-  onClickLogout: Function
 })
+
+const emit = defineEmits(['logout'])
 </script>
 
 <template>
@@ -16,7 +17,7 @@ const props = defineProps({
         <span class="key">연락처</span>
         <p class="value">{{props.phoneNumber}}</p>
       </div>
-      <Button @click="props.onClickLogout">로그아웃</Button>
+      <Button @click="() => emit('logout')">로그아웃</Button>
     </li>
     <li class="setting-item">
       <div>

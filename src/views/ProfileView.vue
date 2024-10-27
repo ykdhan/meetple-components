@@ -35,7 +35,7 @@ const user = TEST_USER;
     <Gap :height="20" />
     <Settings :options="settings" />
     <Gap :height="20" />
-    <AccountSettings name="일론" phone-number="010-1234-1234" birth-date="2000.01.15" :on-click-logout="() => {}" />
+    <AccountSettings name="일론" phone-number="010-1234-1234" birth-date="2000.01.15" @logout="() => {}" />
     <Gap :height="20" />
     <Divider :height="5" />
     <Gap :height="20" />

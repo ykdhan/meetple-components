@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
 import IcLogo from '@/components/icons/IcLogo.vue'
 import IcPointLogo from '@/components/icons/IcPointLogo.vue'
 import SubmitButton from '@/components/SubmitButton.vue'
 import { formatNumber } from '@/lib/utils'
 
-const props = defineProps({
-  onClickItem: {
-    type: Function as PropType<(id: number) => void>,
-    required: true,
-  }
-})
+const emit = defineEmits(['click'])
 
 const items = [
   { id: 1, point: 5, price: 1000 },
@@ -28,7 +22,7 @@ const items = [
     <li v-for="(item) in items" :key="item.id">
       <img class="icon" src="@/assets/images/logo.png" alt="Point" />
       <p class="point"><span>{{item.point}}</span> 포인트</p>
-      <SubmitButton class="button" @click="() => props.onClickItem(item.id)">₩ {{formatNumber(item.price)}}</SubmitButton>
+      <SubmitButton class="button" @click="() => emit('click', item.id)">₩ {{formatNumber(item.price)}}</SubmitButton>
     </li>
   </ul>
 </template>
