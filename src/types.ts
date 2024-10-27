@@ -7,3 +7,6 @@ export type NotificationType =
   'match-request-remind' |
   'matched' |
   'match-reject';
+
+export type ModalType = 'request-match' | 'reject-match' | 'matched' | 'block-partner' | 'delete-partner' |
+  'logout' | 'delete-account' | 'purchase-point' | null;

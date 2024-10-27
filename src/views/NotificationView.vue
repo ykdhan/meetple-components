@@ -17,7 +17,7 @@ import { TEST_ACTION_DATA, TEST_NOTIFICATIONS } from '@/consts/testData'
   </div>
 </template>
 
-<style>
+<style scoped>
 .page {
   padding: 16px;
 }

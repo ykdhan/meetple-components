@@ -17,7 +17,7 @@ import PointItems from '@/components/PointItems.vue'
   </div>
 </template>
 
-<style>
+<style scoped>
 .page {
   padding: 16px;
 }

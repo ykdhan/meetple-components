@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { type PropType, ref } from 'vue'
+import { type PropType } from 'vue'
 import IcGrayArrow from '@/components/icons/IcGrayArrow.vue'
-import SelectModal from '@/modals/SelectModal.vue'
+import { useModalStore } from '@/stores/modal'
 
 const props = defineProps({
   label: String,
@@ -23,7 +23,20 @@ const props = defineProps({
   maxLength: Number,
 })
 
-const open = ref(false);
+const { setModal } = useModalStore()
+
+const onClick = () => {
+  setModal({
+    type: 'select',
+    data: {
+      modalTitle: props.modalTitle,
+      modalOptionCols: props.modalOptionCols,
+      options: props.options,
+      selected: props.value,
+      onChange: props.onChange,
+    }
+  })
+}
 </script>
 
 <template>
@@ -32,22 +45,13 @@ const open = ref(false);
     <span v-else>(선택사항)</span>
   </label>
   <div class="container">
-    <button class="select" @click="() => open = !open">
+    <button class="select" @click="onClick">
       <span>{{props.options.find(option => option.value === props.value)?.label}}</span>
       <div class="arrow">
         <IcGrayArrow />
       </div>
     </button>
   </div>
-  <section class="modal-area" :class="{ dimmed: open}" @click="() => open = false">
-    <SelectModal v-if="open"
-                 :data="props.options"
-                 :title="props.modalTitle || '선택해주세요'"
-                 :selected="props.value"
-                 :num-cols="props.modalOptionCols"
-                 :on-select="props.onChange"
-                 :on-close="() => open = false" />
-  </section>
 </template>
 
 <style scoped>
@@ -92,19 +96,5 @@ label > span.required {
 }
 .arrow svg {
   transform: rotate(90deg);
-}
-.modal-area {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
-  transition: background-color .5s;
-  pointer-events: none;
-}
-.modal-area.dimmed {
-  background: rgba(0, 0, 0, .7);
-  pointer-events: auto;
 }
 </style>

@@ -24,7 +24,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
   </StickyArea>
 </template>
 
-<style>
+<style scoped>
 .page {
   padding: 16px;
 }

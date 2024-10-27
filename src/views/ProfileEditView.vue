@@ -51,7 +51,7 @@ const birthdate = ref('')
   </div>
 </template>
 
-<style>
+<style scoped>
 .page {
   padding: 16px;
 }

@@ -35,7 +35,7 @@ const agreement = ref([false, false, false])
   </StickyArea>
 </template>
 
-<style>
+<style scoped>
 .page {
   padding: 16px;
 }

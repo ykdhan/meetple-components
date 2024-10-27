@@ -4,40 +4,36 @@ import CloseButton from '@/components/buttons/CloseButton.vue'
 import Button from '@/components/Button.vue'
 import type { PropType } from 'vue'
 
+type PropData = {
+  options: { label: string, value: string }[];
+  modalTitle: string;
+  modalOptionCols: number;
+  selected: string;
+  onChange: (value: string) => void;
+}
+
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  selected: String,
   data: {
-    type: Array as PropType<{ label: string, value: string }[]>,
+    type: Object as PropType<PropData>,
     required: true,
-  },
-  onSelect: {
-    type: Function as PropType<(value: string) => void>,
-    required: true,
-  },
-  onClose: {
-    type: Function as PropType<() => void>,
-    required: true,
-  },
-  numCols: {
-    type: Number,
-    default: 2,
   },
 })
+
+const emit = defineEmits(['close'])
 </script>
 
 <template>
   <Modal :style="{paddingTop: '40px', paddingBottom: '40px'}">
-    <p class="title">{{props.title}}</p>
-    <ul class="list" :style="{ gridTemplateColumns: `repeat(${numCols}, 1fr)`}">
-      <li v-for="(item, index) in props.data" :key="index">
-        <Button @click="() => props.onSelect(item.value)" :class="{selected: props.selected === item.value}">{{item.label}}</Button>
+    <p class="title">{{props.data.modalTitle}}</p>
+    <ul class="list" :style="{ gridTemplateColumns: `repeat(${props.data.modalOptionCols || 2}, 1fr)`}">
+      <li v-for="(item, index) in props.data.options" :key="index">
+        <Button @click="() => {
+          props.data.onChange(item.value)
+          emit('close')
+        }" :class="{selected: props.data.selected === item.value}">{{item.label}}</Button>
       </li>
     </ul>
-    <CloseButton class="close" @click="props.onClose" />
+    <CloseButton class="close" @click="() => emit('close')" />
   </Modal>
 </template>
 

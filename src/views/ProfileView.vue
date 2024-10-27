@@ -45,7 +45,7 @@ const user = TEST_USER;
   </div>
 </template>
 
-<style>
+<style scoped>
 .page {
   padding: 16px;
 }
