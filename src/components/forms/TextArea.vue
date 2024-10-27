@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type PropType, ref } from 'vue'
+import { ref } from 'vue'
 import IcQuestion from '@/components/icons/IcQuestion.vue'
 
 const props = defineProps({
@@ -11,16 +11,14 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  onChange: {
-    type: Function as PropType<(value: string) => void>,
-    required: true,
-  },
   numLines: {
     type: Number,
     default: 4,
   },
   maxLength: Number,
 })
+
+const emit = defineEmits(['input'])
 
 const error = ref(false)
 </script>
@@ -42,7 +40,7 @@ const error = ref(false)
     :value="props.value"
     @input="(e) => {
       const val = e.target.value
-      props.onChange(props.maxLength ? val.slice(0, props.maxLength) : val)
+      emit('input', props.maxLength ? val.slice(0, props.maxLength) : val)
       if (props.maxLength) {
         error = val.length > props.maxLength
       }

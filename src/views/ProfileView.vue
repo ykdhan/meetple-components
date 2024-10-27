@@ -31,7 +31,7 @@ const user = TEST_USER;
     <Gap :height="20" />
     <AlertBanner title="카카오톡 오픈 프로필을 등록해주세요." description="링크된 상대방과 대화할 수 있습니다." />
     <Gap :height="20" />
-    <MyPointWithButton :point="1525" :on-click-charge="() => {}" />
+    <MyPointWithButton :point="1525" @charge="() => {}" />
     <Gap :height="20" />
     <Settings :options="settings" />
     <Gap :height="20" />

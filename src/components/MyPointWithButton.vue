@@ -7,11 +7,9 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  onClickCharge: {
-    type: Function,
-    required: true,
-  },
 })
+
+const emit = defineEmits(['charge'])
 </script>
 
 <template>
@@ -23,7 +21,7 @@ const props = defineProps({
         {{formatNumber(props.point)}}
       </span>
     </div>
-    <SubmitButton class="btn-charge">충전하기</SubmitButton>
+    <SubmitButton class="btn-charge" @click="() => emit('charge')">충전하기</SubmitButton>
   </div>
 </template>
 

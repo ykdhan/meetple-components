@@ -56,7 +56,7 @@ const onImageChange = (e: Event) => {
       </button>
       <p class="description" v-if="props.description">{{props.description}}</p>
     </div>
-    <Button class="change-button" :onClick="() => input?.click()" v-if="selected">
+    <Button class="change-button" @click="() => input?.click()" v-if="selected">
       <IcImage width="24" height="24" />
       <span>이미지 교체하기</span>
     </Button>

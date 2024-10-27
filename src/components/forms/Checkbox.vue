@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { type PropType } from 'vue'
 import IcCheckActive from '@/components/icons/IcCheckActive.vue'
 import IcCheck from '@/components/icons/IcCheck.vue'
 
@@ -17,12 +16,10 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  onChange: {
-    type: Function as PropType<(value: boolean) => void>,
-    required: true,
-  },
-  onClickDetail: Function,
+  showDetailButton: Boolean,
 })
+
+const emit = defineEmits(['change', 'detail'])
 </script>
 
 <template>
@@ -31,14 +28,14 @@ const props = defineProps({
       type="checkbox"
       :id="props.name"
       :checked="props.value"
-      @change="() => props.onChange(!props.value)"
+      @change="() => emit('change', !props.value)"
     />
     <label :for="props.name" :class="{main: props.main}">
       <IcCheckActive v-if="props.value" />
       <IcCheck v-else />
       {{props.title}}
     </label>
-    <button @click="props.onClickDetail" v-if="!!props.onClickDetail">
+    <button @click="() => emit('detail')" v-if="!!props.showDetailButton">
     </button>
   </div>
 </template>

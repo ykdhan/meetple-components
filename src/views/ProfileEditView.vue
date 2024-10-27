@@ -9,6 +9,7 @@ import TextArea from '@/components/forms/TextArea.vue'
 import Select from '@/components/forms/Select.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import RadioButtonTabs from '@/components/forms/RadioButtonTabs.vue'
+import LinkButton from '@/components/forms/LinkButton.vue'
 import { TEST_ACTION_DATA, TEST_SELECT_OPTIONS, TEST_RADIO_OPTIONS } from '@/consts/testData'
 import { ref } from 'vue'
 import { validateDate } from '@/lib/utils'
@@ -31,7 +32,7 @@ const birthdate = ref('')
     <Gap :height="20" />
     <TextInput label="학교명" :on-change="(val: string) => { school = val}" :value="school" />
     <Gap :height="20" />
-    <TextArea label="자개소개" :required="true" :on-change="(val: string) => introduction = val" :value="introduction" />
+    <TextArea label="자개소개" :required="true" @input="(val: string) => introduction = val" :value="introduction" />
     <Gap :height="20" />
     <TextInput label="생년월일" :validate="(val: string) => {
       if (val.length < 10) return null;
@@ -39,7 +40,9 @@ const birthdate = ref('')
       return '생년월일이 올바르지 않습니다';
     }" :on-change="(val: string) => birthdate = val" :value="birthdate" />
     <Gap :height="20" />
-    <TextArea question="나와 내 친구들은 어떤 사람인가요?" :on-change="(val: string) => introduction = val" :value="introduction" :num-lines="6" :max-length="120" />
+    <TextArea question="나와 내 친구들은 어떤 사람인가요?" @input="(val: string) => introduction = val" :value="introduction" :num-lines="6" :max-length="120" />
+    <Gap :height="20" />
+    <LinkButton title="프로필 연동하기" label="프로필 연동" :required="true" @click="() => {}" />
     <Gap :height="20" />
     <RadioButtonTabs label="성별" name="gender" :required="true" :on-change="(val: string) => gender = val" :value="gender" :options="TEST_RADIO_OPTIONS" />
     <Gap :height="20" />
